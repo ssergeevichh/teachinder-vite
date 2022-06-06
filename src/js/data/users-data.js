@@ -1,6 +1,4 @@
-import { formatUserData } from '../helpers/helper'
-
-export const users = [
+const users = [
   {
     gender: 'male',
     name: { title: 'Mr', first: 'Norbert', last: 'Weishaupt' },
@@ -1806,4 +1804,4 @@ export const users = [
   },
 ]
 
-export const formattedUsers = users.map(user => formatUserData(user))
+export default users
