@@ -1,4 +1,6 @@
-const users = [
+import formatUserData from '../user/format-user-data'
+
+export const users = [
   {
     gender: 'male',
     name: { title: 'Mr', first: 'Norbert', last: 'Weishaupt' },
@@ -1804,4 +1806,4 @@ const users = [
   },
 ]
 
-export default users
+export const formattedUsers = users.map(user => formatUserData(user))

@@ -1,4 +1,4 @@
-const columns = [
+export const teacherColumns = [
   {
     name: 'full_name',
     title: 'Name',
@@ -26,4 +26,20 @@ const columns = [
   },
 ]
 
-export default columns
+export const pupilsColumns = [
+  {
+    name: 'full_name',
+    title: 'Name',
+    directionImgPath: '/images/down-arrow.png',
+  },
+  {
+    name: 'course',
+    title: 'Speciality',
+    directionImgPath: '/images/down-arrow.png',
+  },
+  {
+    name: 'age',
+    title: 'Age',
+    directionImgPath: '/images/down-arrow.png',
+  },
+]
