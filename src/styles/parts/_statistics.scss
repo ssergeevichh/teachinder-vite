@@ -6,6 +6,9 @@
     &__paganation {
         margin-top: 30px;
     }
+    &__table-item {
+        margin-bottom: 40px;
+    }
 }
 
 .table-wrapper {
@@ -60,6 +63,9 @@
                     opacity: 0;
                     visibility: hidden;
                 }
+                &:not(:first-child) {
+                    text-align: center;
+                }
 
                 &:hover {
                     background-color: rgba(0, 0, 0, 0.041);
@@ -82,6 +88,9 @@
         tr {
             td {
                 padding: 8px;
+                &:not(:first-child) {
+                    text-align: center;
+                }
             }
         }
     }
