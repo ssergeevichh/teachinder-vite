@@ -1,6 +1,9 @@
 const filterParams = [
   {
     type: 'select',
+    itemClassName: 'filter-block__item',
+    labelClassName: 'filter-block__label',
+    selectClassName: 'filter-block__select',
     name: 'age',
     title: 'Age',
     filterType: 'range',
@@ -12,6 +15,9 @@ const filterParams = [
   },
   {
     type: 'select',
+    itemClassName: 'filter-block__item',
+    labelClassName: 'filter-block__label',
+    selectClassName: 'filter-block__select',
     name: 'country',
     title: 'Region',
     filterType: 'equal',
@@ -19,6 +25,9 @@ const filterParams = [
   },
   {
     type: 'select',
+    itemClassName: 'filter-block__item',
+    labelClassName: 'filter-block__label',
+    selectClassName: 'filter-block__select',
     name: 'gender',
     title: 'Sex',
     filterType: 'equal',
@@ -29,12 +38,16 @@ const filterParams = [
   },
   {
     type: 'checkbox',
+    itemClassName: 'filter-block__checkbox',
+    labelClassName: 'filter-block__label filter-block__label-sizing',
     title: 'Only with photo',
     name: 'picture_large',
     filterType: 'equal',
   },
   {
     type: 'checkbox',
+    itemClassName: 'filter-block__checkbox',
+    labelClassName: 'filter-block__label filter-block__label-sizing',
     title: 'Only favorites',
     name: 'favorite',
     filterType: 'equal',
