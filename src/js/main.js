@@ -1,7 +1,14 @@
 import '../styles/main.scss'
-import { fillTopUsersList } from './user/users-list-filling'
-import { fillPupilsStatisticsTable, fillTeacherStatisticsTable } from './user/statistics-table'
+import {
+  addFilterForm,
+  addSearchFormListeners,
+  fillPupilsStatisticsTable,
+  fillTeacherStatisticsTable,
+  fillTopUsersList,
+} from './page-filing'
 
+addFilterForm()
+addSearchFormListeners()
 fillTopUsersList()
 fillTeacherStatisticsTable()
 fillPupilsStatisticsTable()
