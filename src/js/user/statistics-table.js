@@ -16,7 +16,7 @@ function createTableRow(user, columns) {
   return tableItem
 }
 
-function createStatisticsTable({ users, columns, handlingFunc, handlingFuncOptions = [] }) {
+export default function createStatisticsTable({ users, columns, handlingFunc, handlingFuncOptions = [] }) {
   const table = createElement('table', {
     className: 'statistics-table',
   })
@@ -58,22 +58,4 @@ function createStatisticsTable({ users, columns, handlingFunc, handlingFuncOptio
   }
 
   return table
-}
-
-export function fillTeacherStatisticsTable() {
-  const table = createStatisticsTable({
-    users: formattedUsers,
-    columns: teacherColumns,
-    handlingFunc: sortUsersByField,
-  })
-  document.querySelector('.table-wrapper').appendChild(table)
-}
-
-export function fillPupilsStatisticsTable() {
-  const table = createStatisticsTable({
-    users: formattedUsers,
-    columns: pupilsColumns,
-    handlingFunc: sortUsersByField,
-  })
-  document.querySelector('.table-pupils-wrapper').appendChild(table)
 }
