@@ -7,8 +7,9 @@ import {
   fillTopUsersList,
 } from './page-filing'
 
-addFilterForm()
-addSearchFormListeners()
-fillTopUsersList()
+import { initUserList } from '@/js/user/user-list'
+
+initUserList()
+
 fillTeacherStatisticsTable()
 fillPupilsStatisticsTable()

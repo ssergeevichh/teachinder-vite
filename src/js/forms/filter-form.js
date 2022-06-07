@@ -68,7 +68,7 @@ const filterFormFields = [
   },
 ]
 
-export default function createFilteringForm(params) {
+export default function createFilteringForm(params, { onChange } = {}) {
   const form = createElement('form', {
     className: 'filter-block top-teachers__filter',
     name: 'filtering',
@@ -78,6 +78,18 @@ export default function createFilteringForm(params) {
     const fieldCreator = filterFormFields.find(field => field.type === param.type)
     form.appendChild(fieldCreator.function(param))
   })
+
+  if (onChange) {
+    form.addEventListener('change', ({ target }) => {
+      if (target.dataset.id === 'filtering') {
+        onChange({
+          name: target.name,
+          value: target.value === 'on' ? target.checked : target.value,
+          filterType: target.dataset.filtertype,
+        })
+      }
+    })
+  }
 
   return form
 }

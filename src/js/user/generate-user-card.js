@@ -1,5 +1,6 @@
 /* eslint-disable quote-props */
 import { createElement } from '../helpers/helper'
+import { eventBus } from './favorites'
 
 export default function generateUserCard({ user, job = true }) {
   const teacherItem = createElement('li', {
@@ -34,6 +35,11 @@ export default function generateUserCard({ user, job = true }) {
       className: 'teacher-item__favorite',
     }))
   }
+
+  eventBus.on('favorite-change', () => {
+    //
+  })
+  // const favoriteUsersUl = document.querySelector('.favorite-teachers-list')
 
   return teacherItem
 }

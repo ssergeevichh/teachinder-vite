@@ -27,7 +27,7 @@ function setFavorite(userData, userElement) {
 
 eventBus.on('favorite-change', setFavorite)
 
-export function createUserInfo(userData, targetUserEl) {
+export function createUserInfo(userData) {
   const userInfoItem = createElement('div', {})
   const mainInfo = createElement('div', {
     className: 'main-info',
@@ -46,7 +46,7 @@ export function createUserInfo(userData, targetUserEl) {
   favoriteIcon.addEventListener('click', () => {
     favoriteIcon.classList.toggle('main-info__favorite--active')
     userData.favorite = !userData.favorite
-    eventBus.emit('favorite-change', null, userData, targetUserEl)
+    eventBus.emit('favorite-change', null, userData)
   })
 
   const teacherAvatar = createElement('img', {
