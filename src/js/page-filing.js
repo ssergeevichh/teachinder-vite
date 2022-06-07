@@ -7,6 +7,9 @@ import createStatisticsTable from './user/statistics-table'
 import { filterUsersByFieldValue, filterUsersByParams, sortUsersByField } from './user/filtering-sorting'
 import { addParamsForFiltering } from './forms/forms-handling'
 import overwriteUsersList from './user/data-overwriting'
+import { createModalWrapper } from './modal/modal-wrapper'
+import { createUserInfo } from './user/user-info'
+import { openModal } from './modal/pop-up'
 
 // fill top users list
 export function fillTopUsersList() {
@@ -14,8 +17,29 @@ export function fillTopUsersList() {
   formattedUsers.forEach(user => topUsersList.appendChild(generateUserCard({
     user,
   })))
-}
 
+  function createUserInfoModal(targetElement) {
+    const modalBlock = document.querySelector('.hidden')
+    const targetElementIndex = formattedUsers.findIndex(user => user.id === targetElement.closest('.teacher-item').dataset.id)
+    const modalElement = createModalWrapper({
+      headerTitleText: 'Teacher info',
+      headerTitleClassName: 'modal-header__title',
+      modalClassName: 'modal-teacher-info modal-block--md-sizing',
+      headerClassName: 'modal-header',
+    })
+    modalBlock.appendChild(modalElement)
+    modalElement.appendChild(createUserInfo(formattedUsers[targetElementIndex], targetElement))
+  }
+
+  function addUsersListListeners() {
+    topUsersList.addEventListener('click', ({ target }) => {
+      createUserInfoModal(target.closest('.teacher-item'))
+      openModal('.modal-teacher-info')
+    })
+  }
+
+  addUsersListListeners()
+}
 // add filtering form
 export function addFilterForm() {
   const topUsersList = document.querySelector('#top-teachers-list')
