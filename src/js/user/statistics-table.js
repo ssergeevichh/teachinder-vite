@@ -1,8 +1,5 @@
 /* eslint-disable quote-props */
 import { createElement } from '../helpers/helper'
-import { pupilsColumns, teacherColumns } from '../data/user-statistics-table-data'
-import { formattedUsers } from '../data/users-data'
-import { sortUsersByField } from './filtering-sorting'
 
 function createTableRow(user, columns) {
   const tableItem = document.createElement('tr')
