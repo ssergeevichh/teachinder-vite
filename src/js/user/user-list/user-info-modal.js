@@ -1,6 +1,6 @@
-import { createElement } from '../helpers/helper'
-import generateUserCard from './generate-user-card'
-import { eventBus } from './favorites'
+import { createElement } from '../../helpers/helper'
+import generateUserCard from '../user-handling/generate-user-card'
+import { eventBus } from '../favorites'
 
 function createFavoriteMark(className) {
   const favoriteMark = document.createElement('div')
@@ -8,26 +8,27 @@ function createFavoriteMark(className) {
   return favoriteMark
 }
 
-function setFavorite(userData, userElement) {
+function setFavorite(userData) {
   const favoriteUsersUl = document.querySelector('.favorite-teachers-list')
   const favoriteUsers = document.querySelectorAll('.favorite-teachers-list > .teacher-item')
+  const userElem = document.querySelector(`[data-id="${userData.id}"]`)
 
   if (userData.favorite) {
-    userElement.prepend(createFavoriteMark('teacher-item__favorite'))
+    userElem.prepend(createFavoriteMark('teacher-item__favorite'))
     favoriteUsersUl.appendChild(generateUserCard({
       user: userData,
       job: false,
     }))
   }
   else if (!userData.favorite) {
-    userElement.firstElementChild.remove()
+    userElem.firstElementChild.remove()
     Array.from(favoriteUsers).find(user => user.dataset.id === userData.id).remove()
   }
 }
 
 eventBus.on('favorite-change', setFavorite)
 
-export function createUserInfo(userData, targetUserEl) {
+export function createUserInfo(userData) {
   const userInfoItem = createElement('div', {})
   const mainInfo = createElement('div', {
     className: 'main-info',
@@ -46,7 +47,7 @@ export function createUserInfo(userData, targetUserEl) {
   favoriteIcon.addEventListener('click', () => {
     favoriteIcon.classList.toggle('main-info__favorite--active')
     userData.favorite = !userData.favorite
-    eventBus.emit('favorite-change', null, userData, targetUserEl)
+    eventBus.emit('favorite-change', null, userData)
   })
 
   const teacherAvatar = createElement('img', {

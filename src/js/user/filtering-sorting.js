@@ -1,14 +1,14 @@
-export function filterUsersByParams(arr, searchedParams) {
+export function filterUsersByParams(arr, searchParams) {
   return arr.filter(
-    user => searchedParams.every(
-      (filterParam) => {
-        if (filterParam.filterType === 'equal') {
-          return user[filterParam.key] === filterParam.value
+    user => searchParams.every(
+      (param) => {
+        if (param.filterType === 'equal') {
+          return user[param.name] === param.value
         }
-        if (filterParam.filterType === 'range') {
-          let ageRange = filterParam.value.split('-')
+        if (param.filterType === 'range') {
+          let ageRange = param.value.split('-')
           ageRange = [Number(ageRange[0]), Number(ageRange[1])]
-          return user[filterParam.key] >= ageRange[0] && user[filterParam.key] <= ageRange[1]
+          return user[param.name] >= ageRange[0] && user[param.name] <= ageRange[1]
         }
         return false
       },

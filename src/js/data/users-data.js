@@ -1,4 +1,4 @@
-import formatUserData from '../user/format-user-data'
+import formatUserData from '@/js/user/user-handling/format-user-data'
 
 export const users = [
   {

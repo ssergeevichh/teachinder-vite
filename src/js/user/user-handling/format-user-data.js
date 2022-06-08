@@ -1,4 +1,4 @@
-import { getRandomInt } from '../helpers/helper'
+import { getRandomInt } from '@/js/helpers/helper'
 
 export default function formatUserData(user) {
   function getCourse() {
