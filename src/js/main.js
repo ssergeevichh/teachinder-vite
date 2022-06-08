@@ -1,14 +1,7 @@
 import '../styles/main.scss'
-import {
-  addFilterForm,
-  addSearchFormListeners,
-  fillPupilsStatisticsTable,
-  fillTeacherStatisticsTable,
-  fillTopUsersList,
-} from './page-filing'
+import { initPupilsStatisticsTable, initTeacherStatisticsTable } from './user/table'
+import { initUserList } from '@/js/user/user-list'
 
-addFilterForm()
-addSearchFormListeners()
-fillTopUsersList()
-fillTeacherStatisticsTable()
-fillPupilsStatisticsTable()
+initUserList()
+initTeacherStatisticsTable()
+initPupilsStatisticsTable()
