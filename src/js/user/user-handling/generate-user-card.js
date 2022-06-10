@@ -29,11 +29,5 @@ export default function generateUserCard({ user, job = true }) {
   }
   teacherItem.appendChild(teacherLocation)
 
-  if (user.favorite) {
-    teacherItem.appendChild(createElement('div', {
-      className: 'teacher-item__favorite',
-    }))
-  }
-
   return teacherItem
 }
