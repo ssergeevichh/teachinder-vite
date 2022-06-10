@@ -16,8 +16,7 @@ export function filterUsersByParams(arr, searchParams) {
   )
 }
 
-export function sortUsersByField(users, currentField) {
-  const fieldName = currentField.getAttribute('data-name')
+export function sortUsersByField(users, fieldName) {
   users.sort(
     (a, b) => (a[fieldName] > b[fieldName] ? 1 : -1),
   )
