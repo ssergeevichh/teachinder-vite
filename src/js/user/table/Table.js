@@ -6,11 +6,12 @@ export class Table {
     this.users = users
     this.columns = columns
     this.container = container
-    this.hooks = new EventBus()
     this.func = func
+    this.hooks = new EventBus()
 
     this.container.appendChild(this.init())
   }
+  transformationCallback = null
 
   init() {
     const table = createElement('table', {
@@ -25,7 +26,9 @@ export class Table {
       className: 'statistics-table__head',
     })
     tableHead.addEventListener('click', ({ target }) => {
-      this.hooks.emit('sort-table', null, target)
+      const usersToSort = this.users.slice()
+      this.transformationCallback(usersToSort,target.dataset.name)
+      this.fillTable(usersToSort)
     })
     const tableHeadRow = document.createElement('tr')
 
@@ -44,9 +47,15 @@ export class Table {
       tableHeadCell.appendChild(directionImg)
       tableHeadRow.appendChild(tableHeadCell)
     })
-    this.users.forEach(user => tableBody.appendChild(this.createTableRow(user, this.columns)))
 
+    this.users.forEach(user => tableBody.appendChild(this.createTableRow(user, this.columns)))
     return table
+  }
+
+  fillTable(users) {
+    const tableBody = this.container.querySelector('.statistics-table__body')
+    tableBody.innerHTML = ''
+    users.forEach(user => tableBody.appendChild(this.createTableRow(user, this.columns)))
   }
 
   createTableRow(user) {
@@ -61,11 +70,7 @@ export class Table {
     return tableItem
   }
 
-  sort(currentColumn) {
-    const usersToSort = this.users.slice()
-    const tableBody = this.container.querySelector('.statistics-table__body')
-    tableBody.innerHTML = ''
-    this.func(usersToSort, currentColumn)
-    usersToSort.forEach(user => tableBody.appendChild(this.createTableRow(user)))
+  transformItems(callback) {
+    this.transformationCallback = callback
   }
 }

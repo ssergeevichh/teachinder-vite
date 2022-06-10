@@ -6,17 +6,11 @@ import { Table } from '@/js/user/table/Table'
 export function initTeacherStatisticsTable() {
   const tableContainer = document.querySelector('#table-teachers-wrapper')
   const table = new Table(formattedUsers, teacherColumns, tableContainer, sortUsersByField)
-
-  table.hooks.on('sort-table', (currentColumn) => {
-    table.sort(currentColumn)
-  })
+  table.transformItems(sortUsersByField)
 }
 
 export function initPupilsStatisticsTable() {
   const tableContainer = document.querySelector('#table-pupils-wrapper')
   const table = new Table(formattedUsers, pupilsColumns, tableContainer, sortUsersByField)
-
-  table.hooks.on('sort-table', (currentColumn) => {
-    table.sort(currentColumn)
-  })
+  table.transformItems(sortUsersByField)
 }
