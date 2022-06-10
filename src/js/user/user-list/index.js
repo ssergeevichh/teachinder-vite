@@ -5,6 +5,7 @@ import { initUserListFilters } from '@/js/user/user-list/filters'
 import { createModalWrapper } from '@/js/modal/modal-wrapper'
 import { openModal } from '@/js/modal/pop-up'
 import filterParams from '@/js/data/filters'
+import { eventBus } from '@/js/user/favorites-quantity-inner'
 import { formattedUsers } from '@/js/data/users-data'
 
 export const initUserList = () => {
@@ -24,6 +25,7 @@ export const initUserList = () => {
 
     openModal('.modal-teacher-info')
   })
+  eventBus.on('set-user-favorite', list.setFavorite)
   addSearchFormListeners(list)
   initUserListFilters(list, filterParams)
 }

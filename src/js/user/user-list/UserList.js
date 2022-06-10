@@ -28,6 +28,28 @@ export class UserList {
     })
   }
 
+  
+  setFavorite(user) {
+    const favoriteUsersUl = document.querySelector('.favorite-teachers-list')
+    const favoriteUsers = document.querySelectorAll('.favorite-teachers-list > .teacher-item')
+    const userElem = document.querySelector(`[data-id="${user.id}"]`)
+
+    if (user.favorite) {
+      const favoriteMark = createElement('div', {
+        className: 'teacher-item__favorite',
+      })
+      userElem.prepend(favoriteMark)
+      favoriteUsersUl.appendChild(generateUserCard({
+        user: user,
+        job: false,
+      }))
+    }
+    else if (!user.favorite) {
+      userElem.firstElementChild.remove()
+      Array.from(favoriteUsers).find(userElem => userElem.dataset.id === user.id).remove()
+    }
+  }
+
   setUserList(users) {
     this.container.innerHTML = ''
     if (users.length) {
