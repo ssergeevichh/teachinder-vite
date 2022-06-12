@@ -1,15 +1,15 @@
-import { createElement } from '../helpers/helper'
+import { createElement } from '@/js/helpers/helper'
 
-export function createModalWrapper({ headerTitleText, headerTitleClassName, modalClassName, headerClassName }) {
+export function createModalWrapper({ headerTitleText, modalClassName }) {
   const modal = createElement('div', {
     className: modalClassName,
   })
   const modalHeader = createElement('div', {
-    className: headerClassName,
+    className: 'modal-header',
   })
 
   const modalHeaderTitle = createElement('div', {
-    className: headerTitleClassName,
+    className: 'modal-header__title',
     textContent: headerTitleText,
   })
 
