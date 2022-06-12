@@ -1,4 +1,4 @@
-import formatUserData from '@/js/user/user-handling/format-user-data'
+import formatExistingUserData from '@/js/user/user-handling/format-user-data'
 
 export const users = [
   {
@@ -1806,4 +1806,4 @@ export const users = [
   },
 ]
 
-export const formattedUsers = users.map(user => formatUserData(user))
+export const formattedUsers = users.map(user => formatExistingUserData(user))

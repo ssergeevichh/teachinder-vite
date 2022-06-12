@@ -1,6 +1,6 @@
-import { getRandomInt } from '@/js/helpers/helper'
+import { getRandomInt, getAge } from '@/js/helpers/helper'
 
-export default function formatUserData(user) {
+export default function formatExistingUserData(user) {
   function getCourse() {
     const courses = ['Mathematics', 'Physics', 'English', 'Computer Science', 'Dancing', 'Chess', 'Biology', 'Chemistry',
       'Law', 'Art', 'Medicine', 'Statistics']
@@ -28,5 +28,16 @@ export default function formatUserData(user) {
     phone: user.phone,
     picture_large: user.picture.large,
     picture_thumbnail: user.picture.thumbnail,
+  }
+}
+
+export function formatNewUserData(user) {
+  
+  return {
+    ...user,
+    id: `${getRandomInt(1000, 999999)}`,
+    favorite: user.favorite === 'on' ? true : false,
+    picture_large: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
+    age: getAge(user.b_date),
   }
 }
