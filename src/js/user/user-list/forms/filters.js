@@ -1,5 +1,5 @@
-import createFilteringForm from '../../forms/filter-form'
-import { filterUsersByParams } from '@/js/user/filtering-sorting'
+import createFilteringForm from '@/js/user/user-list/forms/filter-form'
+import { filterUsersByParams } from '@/js/user/helpers/filtering-sorting'
 
 export const initUserListFilters = (list, filterParams) => {
   const searchParams = []

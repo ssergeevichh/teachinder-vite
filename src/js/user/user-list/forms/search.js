@@ -1,4 +1,4 @@
-import { filterUsersByFieldValue } from '@/js/user/filtering-sorting'
+import { filterUsersByFieldValue } from '@/js/user/helpers/filtering-sorting'
 
 function formatValue(value) {
   const separatedValue = value.split(',').map(word => word.trim())

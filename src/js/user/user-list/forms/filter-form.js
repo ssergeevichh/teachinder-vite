@@ -1,5 +1,5 @@
 /* eslint-disable quote-props */
-import { createElement } from '../helpers/helper'
+import { createElement } from '@/js/helpers/helper'
 
 function createSelectField(param) {
   const filterItem = createElement('div', {
