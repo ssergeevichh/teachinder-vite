@@ -1,6 +1,9 @@
 .modal-add-teacher {
     display: flex;
     flex-direction: column;
+    &--margin-30 {
+        margin: 50px 0;
+    }
 }
 
 .add-teacher {
@@ -10,6 +13,7 @@
     flex-wrap: wrap;
 
     &__item {
+        position: relative;
         margin-top: 10px;
         width: 100%;
         display: flex;
@@ -18,6 +22,7 @@
 
     }
     &__item-sizing {
+        position: relative;
         width: 48%;
     }
     &__item-direction {
