@@ -1,5 +1,5 @@
 /* eslint-disable quote-props */
-import { createElement } from '../../helpers/helper'
+import { createElement } from '@/js/helpers/helper'
 
 export default function generateUserCard({ user, job = true }) {
   const teacherItem = createElement('li', {
