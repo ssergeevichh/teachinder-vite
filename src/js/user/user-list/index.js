@@ -1,31 +1,33 @@
-import { createUserInfo } from './user-info-modal'
-import { UserList } from './UserList'
-import { addSearchFormListeners } from '@/js/user/user-list/search'
-import { initUserListFilters } from '@/js/user/user-list/filters'
+import { createUserInfo } from '@/js/user/user-list/modals/user-info-modal'
+import { UserList } from '@/js/user/user-list/UserList'
+import { addSearchFormListeners } from '@/js/user/user-list/forms/search'
+import { initUserListFilters } from '@/js/user/user-list/forms/filters'
 import { createModalWrapper } from '@/js/modal/modal-wrapper'
-import { openModal } from '@/js/modal/pop-up'
+import openModal from '@/js/modal/pop-up'
 import filterParams from '@/js/data/filters'
 import { eventBus } from '@/js/user/favorites-quantity-inner'
 import { formattedUsers } from '@/js/data/users-data'
+import initAddTeacherModal from '@/js/user/user-list/modals/modal-add-teacher'
 
-export const initUserList = () => {
+const initUserList = () => {
   const container = document.querySelector('#top-teachers-list')
   const list = new UserList(formattedUsers, container)
 
   list.hooks.on('user-card-clicked', (user) => {
-    const modalBlock = document.querySelector('.hidden')
+    const userInfo = createUserInfo(user)
     const modalElement = createModalWrapper({
       headerTitleText: 'Teacher info',
-      headerTitleClassName: 'modal-header__title',
       modalClassName: 'modal-teacher-info modal-block--md-sizing',
-      headerClassName: 'modal-header',
     })
-    modalBlock.appendChild(modalElement)
-    modalElement.appendChild(createUserInfo(user))
+    modalElement.appendChild(userInfo)
 
-    openModal('.modal-teacher-info')
+    openModal(modalElement)
   })
   eventBus.on('set-user-favorite', list.setFavorite)
+  // eventBus.on('users-list-updated', list.setUserList)
   addSearchFormListeners(list)
   initUserListFilters(list, filterParams)
+  initAddTeacherModal(list)
 }
+
+export default initUserList
