@@ -3,7 +3,7 @@ const defaultProps = {
   fullScreen: false,
 }
 
-export function openModal(selector, options = defaultProps) {
+export default function openModal(element, options = defaultProps) {
   const modalLayer = document.createElement('div')
   modalLayer.className = 'modal-overlay'
   setTimeout(() => {
@@ -26,18 +26,17 @@ export function openModal(selector, options = defaultProps) {
 
     return closeBtn
   }
-  const modalWindow = document.querySelector(selector)
-  const headerBlock = modalWindow.querySelector('.modal-header')
+  const headerBlock = element.querySelector('.modal-header')
   const closeBtn = createCloseEl()
 
   document.body.prepend(modalLayer)
-  modalLayer.append(modalWindow)
+  modalLayer.append(element)
 
-  modalWindow.classList.add('modal-block')
+  element.classList.add('modal-block')
   headerBlock.append(closeBtn)
 
   if (options.fullScreen) {
-    modalWindow.classList.add('full-screen')
+    element.classList.add('full-screen')
   }
 
   function closeModal() {
