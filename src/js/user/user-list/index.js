@@ -30,9 +30,8 @@ export const initUserList = () => {
   addSearchFormListeners(list)
   initUserListFilters(list, filterParams)
   initAddTeacherModal((newUser) => {
-    list.users.push(newUser)
-    listUpdateBus.emit('user-list-updated', null, newUser)
     list.addUser(newUser)
+    listUpdateBus.emit('user-list-updated', null, newUser)
 
     if (newUser.favorite)
       favoritesBus.emit('set-user-favorite', null, newUser)

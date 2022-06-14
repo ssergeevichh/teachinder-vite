@@ -29,6 +29,7 @@ export class UserList {
   }
 
   addUser(user) {
+    this.users.push(user)
     this.container.appendChild(generateUserCard({
       user,
     }))
