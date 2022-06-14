@@ -64,34 +64,42 @@ export function isCorrectDate(date) {
 export const rulesHandling = [
   {
     name: 'required',
+    defaultMessage: 'This field is required',
     func: isRequired,
   },
   {
     name: 'capitalized',
+    defaultMessage: 'This field must be capitalized',
     func: isCapitalized,
   },
   {
     name: 'minLength',
+    defaultMessage: 'This field is too short',
     func: isCorrectMinLength,
   },
   {
     name: 'maxLength',
+    defaultMessage: 'This field is too long',
     func: isCorrectMaxLength,
   },
   {
     name: 'onlyLetters',
+    defaultMessage: 'This field must contain only letters',
     func: isOnlyLetters,
   },
   {
     name: 'onlyNumbers',
+    defaultMessage: 'This field must contain only numbers',
     func: isOnlyNumbers,
   },
   {
     name: 'correctEmail',
+    defaultMessage: 'This field must contain a valid email address',
     func: isEmail,
   },
   {
     name: 'correctDate',
+    defaultMessage: 'Date is not correct',
     func: isCorrectDate,
   },
 ]
