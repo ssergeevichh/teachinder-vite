@@ -1,6 +1,6 @@
 import EventBus from 'js-event-bus'
 
-import generateUserCard from '@/js/user/user-handling/generate-user-card'
+import generateUserCard from '@/js/user/user-data-handling/generate-user-card'
 import { createElement } from '@/js/helpers/helper'
 
 export class UserList {
@@ -28,7 +28,11 @@ export class UserList {
     })
   }
 
-  
+  addUser(user) {
+    this.container.appendChild(generateUserCard({
+      user,
+    }))
+  }
   setFavorite(user) {
     const favoriteUsersUl = document.querySelector('.favorite-teachers-list')
     const favoriteUsers = document.querySelectorAll('.favorite-teachers-list > .teacher-item')
