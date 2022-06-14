@@ -1,11 +1,11 @@
 import openModal from '@/js/modal/pop-up'
 import { Validator } from '@/js/validation/form/validator'
-import generateUserCard from '@/js/user/user-handling/generate-user-card'
+import generateUserCard from '@/js/user/user-data-handling/generate-user-card'
 import { addFormError } from '@/js/validation/form'
-import { formatNewUserData } from '@/js/user/user-handling/format-user-data'
-import { eventBus } from '@/js/user/favorites-quantity-inner'
+import { formatNewUserData } from '@/js/user/user-data-handling/format-user-data'
+import { favoritesBus } from '@/js/user/favorites-quantity-inner'
 
-const initAddTeacherModal = (list) => {
+const initAddTeacherModal = (successCallback) => {
   const openModalButtons = document.querySelectorAll('.btns-wrapper__btn')
   const modalElement = document.querySelector('.modal-add-teacher')
 
@@ -127,14 +127,7 @@ const initAddTeacherModal = (list) => {
     ],
     onSuccsessCallback: (formData, form) => {
       const formattedUserData = formatNewUserData(formData)
-
-      list.users.push(formattedUserData)
-      // eventBus.emit('users-list-updated', null, list.users)
-      list.container.appendChild(generateUserCard({
-        user: formattedUserData,
-      }))
-      if (formattedUserData.favorite)
-        eventBus.emit('set-user-favorite', null, formattedUserData)
+      successCallback(formattedUserData)
     },
     onErrorCallback: (errors, form) => {
       errors.forEach(error => addFormError(form, error))

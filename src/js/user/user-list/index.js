@@ -5,11 +5,14 @@ import { initUserListFilters } from '@/js/user/user-list/forms/filters'
 import { createModalWrapper } from '@/js/modal/modal-wrapper'
 import openModal from '@/js/modal/pop-up'
 import filterParams from '@/js/data/filters'
-import { eventBus } from '@/js/user/favorites-quantity-inner'
+import { favoritesBus } from '@/js/user/favorites-quantity-inner'
+import EventBus from 'js-event-bus'
 import { formattedUsers } from '@/js/data/users-data'
 import initAddTeacherModal from '@/js/user/user-list/modals/modal-add-teacher'
 
-const initUserList = () => {
+export const listUpdateBus = new EventBus()
+
+export const initUserList = () => {
   const container = document.querySelector('#top-teachers-list')
   const list = new UserList(formattedUsers, container)
 
@@ -23,11 +26,17 @@ const initUserList = () => {
 
     openModal(modalElement)
   })
-  eventBus.on('set-user-favorite', list.setFavorite)
-  // eventBus.on('users-list-updated', list.setUserList)
+  favoritesBus.on('set-user-favorite', list.setFavorite)
   addSearchFormListeners(list)
   initUserListFilters(list, filterParams)
-  initAddTeacherModal(list)
+  initAddTeacherModal((newUser) => {
+    list.users.push(newUser)
+    listUpdateBus.emit('user-list-updated', null, newUser)
+    list.addUser(newUser)
+
+    if (newUser.favorite)
+      favoritesBus.emit('set-user-favorite', null, newUser)
+  })
 }
 
 export default initUserList
