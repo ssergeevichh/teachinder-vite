@@ -1,6 +1,5 @@
-import defaultMesages from '@/js/validation/default-messages'
-import { createErrorData, rulesHandling } from './rules-handling'
 import { removeFormErrors } from './index'
+import validateFormData from './data-validation'
 
 export class Validator {
   constructor(formSelector, { rules, onSuccsessCallback, onErrorCallback }) {
@@ -36,25 +35,7 @@ export class Validator {
   }
 
   validate() {
-    const errors = []
-    const formDataEntries = Object.entries(this.getData(this.form))
-
-    formDataEntries.forEach(([inputName, value]) => {
-      const field = this.formFieldRules.find(field => field.name === inputName)
-      if (field) {
-        field.rules.every((rule) => {
-          const ruleHandling = rulesHandling.find(ruleHandling => ruleHandling.name === rule.ruleName)
-          if (!ruleHandling.func(value, rule.value)) {
-            errors.push(createErrorData(rule.message || defaultMesages[rule.ruleName], inputName))
-
-            return false
-          }
-
-          return true
-        })
-      }
-    })
-    return errors
+    return validateFormData(this.getData(), this.formFieldRules)
   }
 
   onSuccsess(callback) {
