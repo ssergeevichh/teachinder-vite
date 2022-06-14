@@ -11,7 +11,7 @@ export class Table {
 
     this.container.appendChild(this.init())
   }
-  transformationCallback = null
+  sortTableCallback = null
 
   init() {
     const table = createElement('table', {
@@ -26,9 +26,12 @@ export class Table {
       className: 'statistics-table__head',
     })
     tableHead.addEventListener('click', ({ target }) => {
-      const usersToSort = this.users.slice()
-      this.transformationCallback(usersToSort,target.dataset.name)
-      this.fillTable(usersToSort)
+      this.hooks.emit('table-head-clicked', null, target)
+      if (this.sortTableCallback ) {
+        const usersToSort = this.users.slice()
+        this.sortTableCallback(usersToSort,target.dataset.name)
+        this.fillTable(usersToSort)
+      }
     })
     const tableHeadRow = document.createElement('tr')
 
@@ -58,6 +61,11 @@ export class Table {
     users.forEach(user => tableBody.appendChild(this.createTableRow(user, this.columns)))
   }
 
+  addTableItem(user) {
+    const tableBody = this.container.querySelector('.statistics-table__body')
+    tableBody.appendChild(this.createTableRow(user, this.columns))
+  }
+
   createTableRow(user) {
     const tableItem = document.createElement('tr')
     this.columns.forEach((column) => {
@@ -70,7 +78,7 @@ export class Table {
     return tableItem
   }
 
-  transformItems(callback) {
-    this.transformationCallback = callback
+  sortTableItems(callback) {
+    this.sortTableCallback = callback
   }
 }
