@@ -1,5 +1,5 @@
 import { createElement } from '@/js/helpers/helper'
-import { eventBus } from '@/js/user/favorites-quantity-inner'
+import { favoritesBus } from '@/js/user/favorites-quantity-inner'
 
 export function createUserInfo(userData) {
   const userInfoItem = createElement('div', {})
@@ -20,7 +20,7 @@ export function createUserInfo(userData) {
   favoriteIcon.addEventListener('click', () => {
     favoriteIcon.classList.toggle('main-info__favorite--active')
     userData.favorite = !userData.favorite
-    eventBus.emit('set-user-favorite', null, userData)
+    favoritesBus.emit('set-user-favorite', null, userData)
   })
 
   const teacherAvatar = createElement('img', {
