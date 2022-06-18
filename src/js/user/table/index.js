@@ -1,4 +1,4 @@
-import { formattedUsers } from '@/js/data/users-data'
+import { formattedUsers, pupilsData } from '@/js/data/users-data'
 import { pupilsColumns, teacherColumns } from '@/js/data/user-statistics-table-data'
 import { sortUsersByField } from '@/js/user/helpers/filtering-sorting'
 import { Table } from '@/js/user/table/Table'
@@ -9,6 +9,7 @@ export function initTeacherStatisticsTable() {
   const table = new Table(formattedUsers, teacherColumns, tableContainer)
   
   table.hooks.on('table-head-clicked', (currentHead) => {
+
     const usersToSort = table.users.slice()
     sortUsersByField(usersToSort, currentHead.dataset.name)
     table.fillTable(usersToSort)
@@ -21,11 +22,11 @@ export function initTeacherStatisticsTable() {
 
 export function initPupilsStatisticsTable() {
   const tableContainer = document.querySelector('#table-pupils-wrapper')
-  const table = new Table(formattedUsers, pupilsColumns, tableContainer)
+  const table = new Table(pupilsData, pupilsColumns, tableContainer)
   
-  table.hooks.on('table-hooks-clicked', () => {
+  table.hooks.on('table-head-clicked', (currentHead) => {
     const usersToSort = table.users.slice()
-    sortUsersByField(usersToSort, target.dataset.name)
+    sortUsersByField(usersToSort, currentHead.dataset.name)
     table.fillTable(usersToSort)
   })
 }
